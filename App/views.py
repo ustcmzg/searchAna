@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
                                                      
-from flask import render_template, flash, redirect, session, url_for, request, g
-from App import app 
+from flask import render_template, flash, redirect, session, url_for, request, g, abort,jsonify
+from App import app,connection
+from App.models import Entry,Log
+
 
                                                      
                                                      
@@ -26,6 +28,17 @@ def index():
 @app.route('/query/show_list')
 def show_list():
     #query database for list
+
+    #entry = connection.flaskkit.entries.Entry()
+    #entry.title = request.form['title']
+    #entry.body = request.form['body']
+    #entry.save()
+    #log = connection.logdb.logs.Log()
+    #log.text = u"added entry: %s "%entry.title
+    #log.save() 
+    #flash('New entry was successfully posted')
+
+    #entries = connection.flaskkit.entries.find().sort('created',-1)
 	
     list={'aa':0.8, 'bb':0.9,'ff':0.7}
     

@@ -1,7 +1,18 @@
 # -*- coding: utf-8 -*-                                                                       
-from flask import Flask        # 引入 flask 
+import os
+from flask import Flask
+from App import settings
+from mongokit import Connection
 
-app = Flask(__name__)          # 实例化一个flask 对象
+
+# create the little application object
+app = Flask(__name__)
+# app.config.from_pyfile(os.environ['flaskkit_settings'] or "setting.py")
+app.config.from_object(settings)
+
+# connect to the database
+connection = Connection(app.config['MONGODB_HOST'],
+                        app.config['MONGODB_PORT'])
 
 import views                   # 导入 views 模
 # from App import views

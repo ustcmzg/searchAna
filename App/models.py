@@ -1,12 +1,27 @@
-from flask import Flask
-from flask import render_template
+# -*- encoding:utf-8 -*-
+from mongokit import Document
+import datetime 
 
-app= Flask(__name__)
-@app.route('/')
-def hello():
-    return render_template("single.html")
-    
+from App import connection 
 
-   
-if __name__ == '__main__':
-  app.run()
+class Entry(Document):
+    structure = {
+            'title':unicode,
+            'body':unicode,
+            'created':datetime.datetime,
+    }
+    required_fields = ['title','body', 'created']
+    default_values = {'created':datetime.datetime.utcnow,}
+    use_dot_notation = True
+
+class Log(Document):
+    structure = {
+            'author':unicode,
+            'text':unicode,
+            'created':datetime.datetime,
+    }
+    required_fields = ['author','created']
+    default_values = {'author':u'wayhome','created':datetime.datetime.utcnow,}
+    use_dot_notation = True
+
+connection.register([Entry,Log])
