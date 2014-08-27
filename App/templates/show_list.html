@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html><!--STATUS OK-->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<title>query</title>
+</head>
+
+<body>
+
+模板测试
+ <a href="{{ url_for('index') }}">返回</a>
+
+ <br><br>
+ 
+    查询      相关度
+ 
+ 
+<ol class=query ">
+  
+  
+  {% for entry in list %}
+    <li><h2>{{ entry }} {{ list[entry] }} </h2>
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+  </ol>
+
+</body>
+
+</html>
