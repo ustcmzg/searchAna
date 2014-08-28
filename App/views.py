@@ -2,12 +2,12 @@
                                                      
 from flask import render_template, flash, redirect, session, url_for, request, g, abort,jsonify
 from App import app,connection
-from App.models import Entry,Log
+from App.models import QuerySim, QueryFeature
 
 
                                                      
                                                      
-@app.route('/',methods=['GET', 'POST'])
+@app.route('/query/',methods=['GET', 'POST'])
 def index():
     error = None
     if request.method == 'POST':
@@ -39,7 +39,17 @@ def show_list():
     #flash('New entry was successfully posted')
 
     #entries = connection.flaskkit.entries.find().sort('created',-1)
-	
+    qfeature = connection.local.QueryFeature.QueryFeature()
+    qfeature.query = u"中国"
+    qfeature.feature = [0.1,0.2]
+    qfeature.save()
+    queryf = connection.local.QueryFeature.find()
+    li = []
+    for info in queryf:
+       li.append(info)
+    # collection = connection.local
+    # rs = collection["QueryFeature"].find_one()
+    #print rs.feature
     list={'aa':0.8, 'bb':0.9,'ff':0.7}
     
     return render_template('show_list.html', list=list)

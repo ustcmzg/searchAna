@@ -14,5 +14,5 @@ app.config.from_object(settings)
 connection = Connection(app.config['MONGODB_HOST'],
                         app.config['MONGODB_PORT'])
 
-import views                   # 导入 views 模
+import views ,models                  # 导入 views 模
 # from App import views
