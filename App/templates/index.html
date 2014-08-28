@@ -12,7 +12,7 @@
 <strong>模板测试</strong>
 <br>
 <br>
-<form  action="" method="post">
+<form  action="{{url_for('show_list')  }}" method="post">
 输入单个查询:<br>
 <textarea name="query" cols ="100" rows = "2"></textarea>
 <br>
@@ -20,7 +20,7 @@
 </form>
 
 
-<form  action="" method="post">
+<form  action="{{url_for('show_pair')}}" method="post">
 输入一对查询:<br>
 <textarea name="query_a" cols ="100" rows = "2"></textarea>
 <br>

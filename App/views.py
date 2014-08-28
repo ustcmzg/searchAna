@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
                                                      
 from flask import render_template, flash, redirect, session, url_for, request, g, abort,jsonify
-from App import app,connection
+from App import app, connection
 from App.DAO import QueryDAO
 from App.models import QuerySim, QueryFeature
 
@@ -9,17 +9,10 @@ from App.models import QuerySim, QueryFeature
 
 qd = QueryDAO.QueryDao()
 
-@app.route('/query/',methods=['GET', 'POST'])
+@app.route('/query/')
 def index():
     error = None
-    if request.method == 'POST':
-        if 'list' in request.form:
-            return redirect(url_for('show_list'))
 
-         
-        elif 'pair' in request.form:
-            return redirect(url_for('show_pair'))
-    
 		
     # the code below is executed if the request method
     # was GET or the credentials were invalid
@@ -27,7 +20,7 @@ def index():
 
 
 
-@app.route('/query/show_list')
+@app.route('/query/show_list', methods=['post'])
 def show_list():
     #query database for list
 
@@ -37,8 +30,9 @@ def show_list():
     if res is not None:
         li = []
         return render_template('show_list.html', list=li)
-    
-@app.route('/query/show_pair')
+    else:
+        return render_template('show_list.html', list={})
+@app.route('/query/show_pair', methods=['post'])
 def show_pair():
     #query database for sim
 
@@ -47,9 +41,10 @@ def show_pair():
 
     sim = qd.getQueryPair(query_a, query_b)
     if sim is not None:
-        sim=0.8
+        #sim=0.8
         return render_template('show_pair.html', sim=sim)
-
+    else:
+        return render_template("show_pair.html", sim=0)
 @app.errorhandler(404)
 def internal_error(error):
     return render_template('404.html'), 404

@@ -10,21 +10,21 @@ class QueryDao():
     """
 
     """
-    def __getQueryFeature(self, query):
+    def __getQueryFeature(self, q):
         """
 
         :param query:
         :return:
         """
-        if query is None or query == "":
+        if q is None or q == "":
             return None
 
-        res = connection.dbname.queryfeature.find_one()
+        res = connection[dbname].queryfeature.find_one({"query":q})
         if res is None:
             return None
 
-        elif res.feature is not None:
-            return res.feature
+        elif res['feature'] is not None:
+            return res['feature']
         return None
 
     def __calSim(self, feature_a, feature_b):
@@ -34,6 +34,8 @@ class QueryDao():
         :param feature_b:
         :return:
         """
+        print feature_b
+        print feature_a
         return 0
 
 
@@ -64,5 +66,5 @@ class QueryDao():
         if q is None or q == "":
             return None
 
-        res = connection.dbname.querysim.find_one({'query':q})
+        res = connection[dbname].querysim.find_one({'query':q})
         return res
