@@ -8,24 +8,22 @@
 
 <body>
 
-模板测试
+Query相似性
  <a href="{{ url_for('index') }}">返回</a>
 
  <br><br>
- 
+
     查询      相关度
  
- 
 <ol class=query ">
-  
-  
-  {% for entry in list %}
-    <li>{{ entry }} {{ list[entry] }}
+
+  {% for entry in li %}
+    <li>{{ entry[0], entry[1]}}
+    </li>
   {% else %}
     <li><em>Unbelievable.  No entries here so far</em>
   {% endfor %}
   </li>
-
 </body>
 
 </html>

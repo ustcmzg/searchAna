@@ -15,10 +15,10 @@ class QueryFeature(Document):
 class QuerySim(Document):
     structure = {
             'query_a':unicode,
-            'pair':{
+            'pair':[{
                 'query_b':unicode,
                 "sim":float
-            }
+            }]
     }
     required_fields = ['query_a','pair']
     use_dot_notation = True

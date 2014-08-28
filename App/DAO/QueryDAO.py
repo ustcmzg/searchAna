@@ -1,6 +1,8 @@
+
 __author__ = 'fangkuan'
 from App import connection
 from App import settings
+from App.utility.mathUtil import *
 
 
 dbname = settings.MONGODB_NAME
@@ -10,6 +12,15 @@ class QueryDao():
     """
 
     """
+
+
+    def __init__(self):
+        """
+
+        :return:
+        """
+
+
     def __getQueryFeature(self, q):
         """
 
@@ -27,18 +38,6 @@ class QueryDao():
             return res['feature']
         return None
 
-    def __calSim(self, feature_a, feature_b):
-        """
-
-        :param feature_a:
-        :param feature_b:
-        :return:
-        """
-        print feature_b
-        print feature_a
-        return 0
-
-
     def getQueryPair(self, query_a, query_b):
         """
 
@@ -52,7 +51,7 @@ class QueryDao():
         if feature_a is None or feature_b is None:
             return  None
         else:
-            sim =self.__calSim(feature_a, feature_b)
+            sim = mathUtil.calCosineSim(feature_a, feature_b)
         return sim
 
     def getQuerySimList(self, q, sort=1, limit=30):
@@ -66,5 +65,11 @@ class QueryDao():
         if q is None or q == "":
             return None
 
-        res = connection[dbname].querysim.find_one({'query':q})
+        res = connection[dbname].querysim.find_one({'query_a':q}, {"pair":1})
+        li = []
+        if res is not None:
+            pairs = res['pair']
+            for pair in pairs:
+                li.append((pair['query_b'], pair['sim']))
+            return li
         return res

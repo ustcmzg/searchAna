@@ -28,10 +28,12 @@ def show_list():
     res = qd.getQuerySimList(q)
 
     if res is not None:
-        li = []
-        return render_template('show_list.html', list=li)
+        return render_template('show_list.html', li=res)
     else:
-        return render_template('show_list.html', list={})
+        return render_template('show_list.html', li=[])
+
+
+
 @app.route('/query/show_pair', methods=['post'])
 def show_pair():
     #query database for sim
@@ -45,6 +47,9 @@ def show_pair():
         return render_template('show_pair.html', sim=sim)
     else:
         return render_template("show_pair.html", sim=0)
+
+
+
 @app.errorhandler(404)
 def internal_error(error):
     return render_template('404.html'), 404
