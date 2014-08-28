@@ -4,17 +4,15 @@ import datetime
 
 from App import connection 
 
-class Entry(Document):
+class QueryFeature(Document):
     structure = {
-            'title':unicode,
-            'body':unicode,
-            'created':datetime.datetime,
+            'Query':unicode,
+            'Feature':unicode,
     }
-    required_fields = ['title','body', 'created']
-    default_values = {'created':datetime.datetime.utcnow,}
+    required_fields = ['Query','Feature' ]
     use_dot_notation = True
 
-class Log(Document):
+class QuerySim(Document):
     structure = {
             'author':unicode,
             'text':unicode,
@@ -24,4 +22,4 @@ class Log(Document):
     default_values = {'author':u'wayhome','created':datetime.datetime.utcnow,}
     use_dot_notation = True
 
-connection.register([Entry,Log])
+connection.register([QueryFeature,QuerySim])
