@@ -71,5 +71,5 @@ class QueryDao():
             pairs = res['pair']
             for pair in pairs:
                 li.append((pair['query_b'], pair['sim']))
-            return li
+            return {q:li}
         return res

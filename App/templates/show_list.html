@@ -1,29 +1,10 @@
-﻿<!DOCTYPE html><!--STATUS OK-->
+﻿
+{% if li !=[]%}
+{{li}}
 
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-<title>query</title>
-</head>
+{%else %}
 
-<body>
+Unbelievable.  No entries here so far
 
-Query相似性
- <a href="{{ url_for('index') }}">返回</a>
-
- <br><br>
-
-    查询      相关度
+{%endif%}
  
-<ol class=query ">
-
-  {% for entry in li %}
-    <li>{{ entry[0], entry[1]}}
-    </li>
-  {% else %}
-    <li><em>Unbelievable.  No entries here so far</em>
-  {% endfor %}
-  </li>
-</body>
-
-</html>
