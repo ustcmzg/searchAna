@@ -12,15 +12,15 @@
 <strong>模板测试</strong>
 <br>
 <br>
-<form  action="{{url_for('show_list')  }}" method="post">
+<form  action="{{url_for('show_list')  }}" method="get">
 输入单个查询:<br>
 <textarea name="query" cols ="100" rows = "2"></textarea>
 <br>
-<input type="submit" name="list" value="提交">
+<input type="submit" value="提交">
 </form>
 
 
-<form  action="{{url_for('show_pair')}}" method="post">
+<form  action="{{url_for('show_pair')}}" method="get">
 输入一对查询:<br>
 <textarea name="query_a" cols ="100" rows = "2"></textarea>
 <br>
@@ -28,7 +28,7 @@
 <br>
 <br>
 <br>
-<input type="submit" name="pair" value="提交">
+<input type="submit" value="提交">
 </form>
 
 
